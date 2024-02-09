@@ -8,11 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const { ApolloServer, gql } = require('@apollo/server');
-const express, { Express, Request, Response } = require("express");
 const { expressMiddleware } = require("@apollo/server/express4");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const express = require("express");
 const app = express();
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {

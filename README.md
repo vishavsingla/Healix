@@ -7,4 +7,4 @@ signup - /auth/signup
 
 
 backend:
-npm start
+npm run dev

@@ -1,10 +1,14 @@
 const { ApolloServer, gql } = require('@apollo/server');
-const express, { Express, Request, Response } = require("express");
 const { expressMiddleware } = require("@apollo/server/express4");
+import { Request, Response } from 'express';
+
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const express = require("express");
 const app = express();
+
+
 async function startServer() {
   
   const typeDefs = `
@@ -54,8 +58,9 @@ async function startServer() {
   app.listen(8000, () => console.log('Server started at port 8000'));
 }
 
-app.get("/",(req:Request,res:Response)=>{
-  res.json({ message:"Hi from server" });
+app.get("/", (req: Request, res: Response) => {
+  res.json({ message: "Hi from server" });
 });
+
 
 startServer();
