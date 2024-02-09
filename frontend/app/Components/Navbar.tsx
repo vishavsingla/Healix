@@ -15,17 +15,21 @@ export default function Navbar() {
         <nav className="flex items-center justify-between p-4">
           <div>
             <Link href="/">
-              <div className="text-lg text-rose-500 font-bold">Helix</div>
+              <div className="text-lg text-rose-500 text-3xl font-bold">Healix</div>
             </Link>
           </div>
 
-          <div className='mx-5 flex space-x-4``'>
+          <div className='mx-5 flex space-x-[70px]'>
             <Link href="/" className='flex'>
-              <div className="text-lg text-rose-500 font-bold">Helix</div>
+              <div className="text-lg text-rose-500 font">Home</div>
             </Link>
 
             <Link href="/" className='flex'>
-              <div className="text-lg text-rose-500 font-bold">Helix</div>
+              <div className="text-lg text-rose-500 text font">Services</div>
+            </Link>
+
+            <Link href="/" className='flex'>
+              <div className="text-lg text-rose-500 font">About</div>
             </Link>
           </div>
       
