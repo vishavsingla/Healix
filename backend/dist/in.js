@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const { ApolloServer, gql } = require('@apollo/server');
-const express, { Express, Request, Response } = require("express");
+const express = require("express");
 const { expressMiddleware } = require("@apollo/server/express4");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -38,18 +38,18 @@ function startServer() {
         };
         const server = new ApolloServer({
             typeDefs: `
-    
-    type Todo {
-      id: ID!
-      title: String!
-    }
+      type Todo {
+        id: ID!
+        title: String!
+      }
 
-    type Query {
-      getTodos: [Todo]
-    }
+      type Query {
+        getTodos: [Todo]
+      }
     `,
             resolvers: {},
         });
+        ``;
         app.use(bodyParser.json());
         app.use(cors());
         yield server.start();
@@ -58,6 +58,6 @@ function startServer() {
     });
 }
 app.get("/", (req, res) => {
-    res.json({ message: "Hi from server" });
+    res.json({ message: "Hi from server" }); // Fixed the error here
 });
 startServer();

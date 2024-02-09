@@ -1,12 +1,11 @@
 const { ApolloServer, gql } = require('@apollo/server');
-const express, { Express, Request, Response } = require("express");
+const express = require("express");
 const { expressMiddleware } = require("@apollo/server/express4");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
 async function startServer() {
-  
   const typeDefs = `
     type Todo {
       id: ID!
@@ -30,19 +29,18 @@ async function startServer() {
   };
 
   const server = new ApolloServer({
-    typeDefs:`
-    
-    type Todo {
-      id: ID!
-      title: String!
-    }
+    typeDefs: `
+      type Todo {
+        id: ID!
+        title: String!
+      }
 
-    type Query {
-      getTodos: [Todo]
-    }
+      type Query {
+        getTodos: [Todo]
+      }
     `,
-    resolvers:{},
-  });
+    resolvers: {},
+  });``
 
   app.use(bodyParser.json());
   app.use(cors());
@@ -54,8 +52,8 @@ async function startServer() {
   app.listen(8000, () => console.log('Server started at port 8000'));
 }
 
-app.get("/",(req:Request,res:Response)=>{
-  res.json({ message:"Hi from server" });
+app.get("/", (req:Request, res:Response) => {
+  res.json({ message: "Hi from server" }); // Fixed the error here
 });
 
 startServer();

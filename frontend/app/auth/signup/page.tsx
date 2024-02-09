@@ -59,7 +59,7 @@ export function CardWithForm() {
                                 </Label>
                                 <Input
                                     id="password"
-                                    placeholder="Comfirm Password"
+                                    placeholder="Confirm Password"
                                 />
                             </div>
                         </div>
