@@ -1,15 +1,57 @@
-import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
+const { ApolloServer, gql } = require('@apollo/server');
+const express = require("express");
+const { expressMiddleware } = require("@apollo/server/express4");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-dotenv.config();
+async function startServer() {
+  const app = express();
+  const typeDefs = `
+    type Todo {
+      id: ID!
+      title: String!
+    }
 
-const app: Express = express();
-const port = process.env.PORT || 3001;
+    type Query {
+      todos: [Todo!]!
+    }
+  `;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+  const resolvers = {
+    Query: {
+      todos: () => {
+        // Return some mock todos
+        return [
+          { id: "1", title: "Learn GraphQL" },
+          { id: "2", title: "Build a GraphQL server" },
+        ];
+      },
+    },
+  };
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+  const server = new ApolloServer({
+    typeDefs:`
+    
+    type Todo {
+      id: ID!
+      title: String!
+    }
+
+    type Query {
+      getTodos: [Todo]
+    }
+    `,
+    resolvers:{},
+  });
+
+  app.use(bodyParser.json());
+  app.use(cors());
+
+  await server.start();
+
+  app.use('/graphql', expressMiddleware(server));
+
+  app.listen(8000, () => console.log('Server started at port 8000'));
+}
+
+startServer();
